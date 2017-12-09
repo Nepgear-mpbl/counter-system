@@ -1,0 +1,23 @@
+<div id="nav">
+    <ul class="layui-nav">
+        <li class="layui-nav-item layui-this">
+            <a href="">服务控制台</a>
+        </li>
+        {% if user==Null %}
+            <li class="layui-nav-item" style="float: right">
+                <a href="">用户</a>
+                <dl class="layui-nav-child">
+                    <dd><a href="/">注册</a></dd>
+                    <dd><a href="/">登录</a></dd>
+                </dl>
+            </li>
+        {% else %}
+            <li class="layui-nav-item" style="float: right">
+                <a href="">{{ user.username }}</a>
+                <dl class="layui-nav-child">
+                    <dd><a href="/">登出</a></dd>
+                </dl>
+            </li>
+        {% endif %}
+    </ul>
+</div>

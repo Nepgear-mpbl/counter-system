@@ -1,5 +1,5 @@
 from flask import render_template
-from ..model.models import Tester
+from ..model.models import User
 from . import controller
 from .. import db
 
@@ -9,5 +9,4 @@ def index_index():
     # data=Tester(name="testuser",info="only for add test")
     # db.session.add(data)
     # db.session.commit()
-    testers = Tester.query.filter_by(name='testuser').all()
-    return render_template('index/index.html', testers=testers)
+    return render_template('index/index.html')

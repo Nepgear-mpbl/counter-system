@@ -15,7 +15,7 @@ class Config:
 class DevelopmentConfig(Config):
     DEBUG = True
     SQLALCHEMY_TRACK_MODIFICATIONS=True
-    SQLALCHEMY_DATABASE_URI = "mysql://root:100200@localhost:3306/machinelearning"
+    SQLALCHEMY_DATABASE_URI = "mysql://root:100200@localhost:3306/countersystem"
 
 
 # 测试环境

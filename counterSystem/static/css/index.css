@@ -1,0 +1,77 @@
+.footer {
+    margin-right: auto;
+    margin-left: auto;
+    height: 40px;
+    padding: 10px 0;
+    line-height: 26px;
+    text-align: center;
+    background-color: #eee;
+    color: #666;
+    font-weight: 300;
+}
+
+.footer a {
+    padding: 0 5px;
+}
+
+.footer p {
+    padding: 0;
+    margin: 0;
+    font-size: 14px;
+}
+
+
+.main-body {
+    padding-top: 15px;
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-top: 0;
+    margin-right: auto;
+    margin-left: auto;
+    margin-bottom: 0;
+    min-height: calc(100vh - 121px);
+    background-color: white;
+
+}
+
+@media (min-width: 240px) {
+    .main-body{
+        max-width: 237px
+    }
+}
+
+@media (min-width: 360px) {
+    .main-body{
+        max-width: 355px
+    }
+}
+
+@media (min-width: 500px) {
+    .main-body {
+        max-width: 485px
+    }
+}
+
+@media (min-width: 640px) {
+    .main-body {
+        max-width: 635px
+    }
+}
+
+@media (min-width: 768px) {
+    .main-body {
+        max-width: 750px
+    }
+}
+
+@media (min-width: 992px) {
+    .main-body{
+        max-width: 970px
+    }
+}
+
+@media (min-width: 1200px) {
+    .main-body {
+        width: 1170px
+    }
+}
