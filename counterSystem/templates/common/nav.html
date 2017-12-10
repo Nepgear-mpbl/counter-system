@@ -3,19 +3,19 @@
         <li class="layui-nav-item layui-this">
             <a href="">服务控制台</a>
         </li>
-        {% if user==Null %}
+        {% if username==None %}
             <li class="layui-nav-item" style="float: right">
                 <a href="">用户</a>
                 <dl class="layui-nav-child">
-                    <dd><a href="/">注册</a></dd>
+                    <dd><a href="/register">注册</a></dd>
                     <dd><a href="/">登录</a></dd>
                 </dl>
             </li>
         {% else %}
             <li class="layui-nav-item" style="float: right">
-                <a href="">{{ user.username }}</a>
+                <a href="">{{ username }}</a>
                 <dl class="layui-nav-child">
-                    <dd><a href="/">登出</a></dd>
+                    <dd><a href="/logout">登出</a></dd>
                 </dl>
             </li>
         {% endif %}

@@ -31,5 +31,5 @@ class User(Base):
     username = Column(String(12), nullable=False)
     pwd = Column(String(20), nullable=False)
     salt = Column(String(32), nullable=False)
-    last_login_time = Column(DateTime, nullable=False, server_default=text("CURRENT_TIMESTAMP"))
+    create_time = Column(DateTime, nullable=False, server_default=text("CURRENT_TIMESTAMP"))
     type = Column(Integer, nullable=False, server_default=text("'1'"))
