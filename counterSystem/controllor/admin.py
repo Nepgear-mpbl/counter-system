@@ -1,5 +1,5 @@
 from flask import render_template
-from ..model.models import Business, Counter
+from ..model.models import Business, Counter, User
 from . import controller
 from flask import request, redirect, url_for
 from .. import db
@@ -18,9 +18,11 @@ def admin_index():
     business = Business.query.filter_by(valid=1, counter_id=counter_id).first()
     if business is None:
         working = False
+        guest_name = None
     else:
         working = True
-    return render_template('admin/index.html', username=username, working=working)
+        guest_name = User.query.filter_by(user_id=business.user_id).first().username
+    return render_template('admin/index.html', username=username, working=working, guest_name=guest_name)
 
 
 @controller.route('/admin/business/accept', methods=['POST'])
