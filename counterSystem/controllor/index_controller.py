@@ -1,4 +1,4 @@
-from flask import render_template,request, make_response, redirect, url_for
+from flask import render_template, request, make_response, redirect, url_for
 from ..model.models import User, Counter
 from . import controller
 import json
@@ -12,7 +12,7 @@ def index_index():
     if username is not None:
         return redirect(url_for('controller.admin_index'))
     counters = Counter.query.filter_by(user_id=None).all()
-    return render_template('index/index.html', counters=counters,username=None)
+    return render_template('index/index.html', counters=counters, username=None)
 
 
 @controller.route('/login', methods=['POST'])
@@ -21,7 +21,7 @@ def index_login():
     pwd = request.form['password']
     counter = request.form['counter']
     user = User.query.filter_by(username=username).first()
-    if user == None:
+    if user is None:
         res = json.dumps({'status': False, 'message': '用户名或密码错误'}, ensure_ascii=False)
     else:
         salt = user.salt
