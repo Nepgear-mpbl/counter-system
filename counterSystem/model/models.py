@@ -7,7 +7,7 @@ Base = db.Model
 metadata = Base.metadata
 
 
-class Busines(Base):
+class Business(Base):
     __tablename__ = 'business'
 
     id = Column(Integer, primary_key=True)

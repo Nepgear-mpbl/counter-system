@@ -4,7 +4,12 @@
     <link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/admin.css') }}">
 {% endblock %}
 {% block body %}
-    admin
+    {% if working==False %}
+        <table id="demo" lay-filter="business"></table>
+        <button class="layui-btn" id="accept-button">接号</button>
+    {% else %}
+        <button class="layui-btn" id="finish-button">结束本次叫号</button>
+    {% endif %}
 {% endblock %}
 {% block js %}
     <script src="{{ url_for('static', filename='js/admin.js') }}"></script>

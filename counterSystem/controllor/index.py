@@ -35,6 +35,7 @@ def index_login():
             res = json.dumps({'status': True, 'message': '登陆成功'}, ensure_ascii=False)
             res = make_response(res)
             res.set_cookie('username', username)
+            res.set_cookie('counter', counter.counter_id)
         else:
             res = json.dumps({'status': False, 'message': '用户名或密码错误'}, ensure_ascii=False)
     return res
@@ -42,11 +43,13 @@ def index_login():
 
 @controller.route('/logout', methods=['GET'])
 def index_logout():
-    username = request.cookies.get('username')
-    user = User.query.filter_by(username=username).first()
-    counter = Counter.query.filter_by(user_id=user.user_id).first()
+    counter_id = request.cookies.get('counter')
+    if counter_id is None:
+        return redirect(url_for('controller.index_index'))
+    counter = Counter.query.filter_by(counter_id=counter_id).first()
     counter.user_id = None
     db.session.commit()
     res = redirect(url_for('controller.index_index'))
     res.delete_cookie('username')
+    res.delete_cookie('counter')
     return res
