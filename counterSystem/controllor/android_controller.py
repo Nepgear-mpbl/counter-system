@@ -14,6 +14,8 @@ def android_add_business():
         return json.dumps({'status': False, 'message': '用户不存在'}, ensure_ascii=False)
     if User.query.filter_by(user_id=user_id).first() is None:
         return json.dumps({'status': False, 'message': '用户不存在'}, ensure_ascii=False)
+    if Business.query.filter_by(user_id=user_id).first() is not None:
+        return json.dumps({'status': False, 'message': '不能重复叫号'}, ensure_ascii=False)
     business = Business(user_id=user_id, counter_id=None, valid=1)
     db.session.add(business)
     db.session.commit()
@@ -52,7 +54,7 @@ def android_login():
         md5 = hashlib.sha256()
         md5.update((pwd + salt).encode("utf8"))
         if md5.hexdigest() == e_pwd:
-            res = json.dumps({'status': True, 'message': '登陆成功'}, ensure_ascii=False)
+            res = json.dumps({'status': True, 'message': '登陆成功','user_id':user.user_id}, ensure_ascii=False)
         else:
             res = json.dumps({'status': False, 'message': '用户名或密码错误'}, ensure_ascii=False)
     return res
