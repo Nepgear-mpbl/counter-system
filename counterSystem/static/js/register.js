@@ -3,7 +3,6 @@ layui.use('form', function () {
     var $=layui.jquery;
     form.on('submit(register-filter)', function (data) {
         var formData = data.field;
-        console.log(formData);
         $.post('/register', formData, function (retJson) {
             console.log(retJson);
             if (retJson.status) {

@@ -3,7 +3,6 @@ layui.use('form', function () {
     var $=layui.jquery;
     form.on('submit(login-filter)', function (data) {
         var formData = data.field;
-        console.log(formData);
         $.post('/login', formData, function (retJson) {
             console.log(retJson);
             if (retJson.status) {

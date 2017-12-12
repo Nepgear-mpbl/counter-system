@@ -5,10 +5,15 @@
 {% endblock %}
 {% block body %}
     {% if working==False %}
-        <table id="demo" lay-filter="business"></table>
-        <button class="layui-btn" id="accept-button">接号</button>
+        <h2 style="text-align: center">等待中客户</h2>
+        <table id="business" lay-filter="business"></table>
+        <div style="padding: 30px;margin: 0 auto;width: 40%">
+            <button class="layui-btn layui-btn-lg" id="accept-button" style="width: 100%">接号</button>
+        </div>
     {% else %}
-        <button class="layui-btn" id="finish-button">结束本次叫号</button>
+        <div style="padding: 30px;margin: 0 auto;width: 40%">
+            <button class="layui-btn layui-btn-lg" id="finish-button" style="width: 100%">结束本次叫号</button>
+        </div>
     {% endif %}
 {% endblock %}
 {% block js %}

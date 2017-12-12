@@ -35,7 +35,7 @@ def index_login():
             res = json.dumps({'status': True, 'message': '登陆成功'}, ensure_ascii=False)
             res = make_response(res)
             res.set_cookie('username', username)
-            res.set_cookie('counter', counter.counter_id)
+            res.set_cookie('counter', str(counter.counter_id))
         else:
             res = json.dumps({'status': False, 'message': '用户名或密码错误'}, ensure_ascii=False)
     return res
