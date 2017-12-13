@@ -26,6 +26,8 @@ class TestingConfig(Config):
 # 生产环境
 class ProductionConfig(Config):
     PRODUCTION=True
+    SQLALCHEMY_TRACK_MODIFICATIONS = True
+    SQLALCHEMY_DATABASE_URI = "mysql://root:ZZ-y1998@localhost:3306/countersystem"
 
 
 config = {
