@@ -37,7 +37,7 @@ def admin_accept_business():
     if counter is None:
         return json.dumps({'status': False, 'message': '数据库错误'}, ensure_ascii=False)
     all_business = Business.query.filter_by(valid=1, counter_id=None).order_by(Business.post_time).all()
-    if all_business is None:
+    if len(all_business) == 0:
         return json.dumps({'status': False, 'message': '没有等待中的客户'}, ensure_ascii=False)
     all_business[0].counter_id = counter.counter_id
     db.session.commit()
