@@ -14,7 +14,7 @@ def android_add_business():
         return json.dumps({'status': False, 'message': '用户不存在'}, ensure_ascii=False)
     if User.query.filter_by(user_id=user_id).first() is None:
         return json.dumps({'status': False, 'message': '用户不存在'}, ensure_ascii=False)
-    if Business.query.filter_by(user_id=user_id).first() is not None:
+    if Business.query.filter_by(user_id=user_id, valid=1).first() is not None:
         return json.dumps({'status': False, 'message': '不能重复叫号'}, ensure_ascii=False)
     business = Business(user_id=user_id, counter_id=None, valid=1)
     db.session.add(business)
@@ -23,12 +23,28 @@ def android_add_business():
     return res
 
 
+@controller.route('/android/business/cancel', methods=['POST'])
+def android_cancel_business():
+    user_id = request.form['userId']
+    if user_id is None:
+        return json.dumps({'status': False, 'message': '用户不存在'}, ensure_ascii=False)
+    if User.query.filter_by(user_id=user_id).first() is None:
+        return json.dumps({'status': False, 'message': '用户不存在'}, ensure_ascii=False)
+    business = Business.query.filter_by(user_id=user_id, valid=1, counter_id=None).first()
+    if business is None:
+        return json.dumps({'status': False, 'message': '没有等待中的服务'}, ensure_ascii=False)
+    business.valid = 0
+    db.session.commit()
+    res = json.dumps({'status': True, 'message': '取消成功'}, ensure_ascii=False)
+    return res
+
+
 @controller.route('/android/business/info', methods=['GET'])
 def android_info_business():
     user_id = request.args.get('userId')
     if user_id is None:
         return json.dumps({'status': False, 'message': '用户不存在'}, ensure_ascii=False)
-    business = Business.query.filter_by(user_id=user_id).first()
+    business = Business.query.filter_by(user_id=user_id, valid=1).first()
     if business is None:
         return json.dumps({'status': False, 'message': '已不在队列中'}, ensure_ascii=False)
     post_time = business.post_time

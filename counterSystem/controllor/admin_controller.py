@@ -66,7 +66,7 @@ def admin_finish_business():
     counter_id = request.cookies.get('counter')
     if counter_id is None:
         return json.dumps({'status': False, 'message': '请登录'}, ensure_ascii=False)
-    business = Business.query.filter_by(counter_id=counter_id).first()
+    business = Business.query.filter_by(counter_id=counter_id, valid=1).first()
     if business is None:
         return json.dumps({'status': False, 'message': '请不要重复结束'}, ensure_ascii=False)
     business.counter_id = None
