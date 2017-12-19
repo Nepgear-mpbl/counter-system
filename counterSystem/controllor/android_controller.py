@@ -67,7 +67,7 @@ def android_login():
     print(username)
     pwd = request.form['password']
     print(pwd)
-    user = User.query.filter_by(username=username).first()
+    user = User.query.filter_by(username=username,type=0).first()
     if user is None:
         res = json.dumps({'status': False, 'message': '用户名或密码错误'}, ensure_ascii=False)
     else:

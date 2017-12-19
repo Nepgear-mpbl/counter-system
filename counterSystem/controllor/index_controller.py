@@ -20,7 +20,7 @@ def index_login():
     username = request.form['username']
     pwd = request.form['password']
     counter = request.form['counter']
-    user = User.query.filter_by(username=username).first()
+    user = User.query.filter_by(username=username,type=1).first()
     if user is None:
         res = json.dumps({'status': False, 'message': '用户名或密码错误'}, ensure_ascii=False)
     else:
